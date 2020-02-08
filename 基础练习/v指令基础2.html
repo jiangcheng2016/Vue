@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>V 指令基础2</title>
+        <style>
+            .active{
+                border: 1px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+        <!-- v-show指令 -->
+        <input type="button" value="改变图片显示状态" v-on:click="changeIsShow">
+        <img src="images/monkey.gif" alt="图片1" v-show="isShow">
+        <input type="button" value="增加年龄" @click="addAges">
+        <img src="images/monkey.gif" alt="图片2" v-show="age > 18">
+        <!-- v-if 指令-->
+        <p v-if="isShow_font">奋斗的土豆</p>
+        <input type="button" value="改变字体显示状态" @click="changeFontIsShow">
+        <h2 v-if="temperatrue >40">天气超过40度了！</h2> 
+        <!-- v-bind 指令-->
+        <img v-bind:src="imgSrc" alt="" v-bind:title="imgTitle" >
+        <br>
+        <img :src="imgSrc" alt="" :title="imgTitle + '!'" :class="{active:isActive}" @click="truggleImgSrc">
+        <img :src="imgSrc" alt="" :title="imgTitle + '!'" :class="isActive?'active':' ' " @click="truggleImgSrc">
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el:"#app",
+                data:{
+                    isShow:false,
+                    isShow_font:false,
+                    age:17,
+                    temperatrue:45,
+                    imgSrc:'http://jiangrzc.cn/wp-content/themes/simplehome_09131915/images/logo.png',
+                    imgTitle:'奋斗的土豆',
+                    isActive:false,
+
+                },
+                methods:{
+                    changeIsShow:function(){
+                        this.isShow = !this.isShow;
+                    },
+                    addAges:function(){
+                        this.age ++;
+                    },
+                    changeFontIsShow:function(){
+                        this.isShow_font = !this.isShow_font;
+                    },
+                    truggleImgSrc:function(){
+                        this.isActive = !this.isActive;
+                    }
+                }
+            })
+        </script>
+    </body>
+
+</html>

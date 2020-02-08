@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>v-text基础</title>
+    </head>
+    <body>
+        <div id="app" class="app">
+            <!-- v-text 指令-->
+            <h2 v-text="message + '!'"></h2>
+            <h2>hellow {{message + "!"}}</h2>
+            <h2>{{info + '!'}}</h2>
+            <!-- v-html 指令-->
+            <span v-html="content"></span>
+            <p v-text="content"></p>
+            <!-- v-on指令 -->
+            <input type="button" value="v-on指令" v-on:click="doit">
+            <input type="button" value="v-on指令简写" @click="doit">
+            <input type="button" value="v-on指令(双击)" @dblclick="doit">
+            <p v-on:click="changeFood">{{ food }}</p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el:'.app',
+                data:{
+                    message:'我是一只小小鸟',
+                    info:'我在山东省',
+                    //content:'奋斗的'
+                    content:'<a href="http://jiangrzc.cn" target="blank">奋斗的土豆<a>',
+                    food:"奋斗的土豆"
+                },
+                methods:{
+                    doit:function(){
+                        alert("helloworld");
+                    },
+                    changeFood:function(){
+                        console.log(this.food);
+                        this.food += "真棒！"
+                    }
+                }
+            })
+        </script>
+
+    </body>
+</html>
