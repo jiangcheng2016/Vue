@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>v指令基础3</title>
+    </head>
+    <body>
+        <div id="app">
+            <li v-for="item in arr">
+                {{item}}hello
+            </li>
+            <hr>
+            <li v-for="(item,index) in addr">
+                {{index + 1}} 地址: {{item.name}}
+            </li>
+            <hr>
+            <input type="button" value="添加数据" @click="add">
+            <input type="button" value="移除数据" @click="remove">
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el:"#app",
+                data:{
+                    arr:[1,2,3,4,5],
+                    addr:[
+                        {"name":'山东省'},
+                        {"name":"烟台市"},
+                        {"name":"莱山区"},
+                        {"name":"烟台大学文经学院"}
+                    ]
+                },
+                methods:{
+                    add:function(){
+                        this.addr.push({name:"教学楼"});
+                    },
+                    remove:function(){
+                        this.addr.shift();
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
